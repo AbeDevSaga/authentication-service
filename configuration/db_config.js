@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
-const seedAdmin = require('../models/seedAdmin');
-
+const seedAdmin = require('../seeds/seedAdmin');
 
 dotenv.config();
 const connectDB = async () => {
