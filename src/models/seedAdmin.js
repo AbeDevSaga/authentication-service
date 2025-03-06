@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const User = require("./user"); 
 const bcrypt = require("bcrypt");
 
@@ -38,4 +37,4 @@ const seedAdmin = async () => {
   } 
 };
 
-module.exports = { seedAdmin };
+module.exports = seedAdmin;
