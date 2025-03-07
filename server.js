@@ -12,6 +12,11 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
+// app.use((req, res, next) => {
+//     console.log('Request Headers:', req.headers);
+//     next();
+// });
+
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/org', require('./routes/orgRoutes'));
