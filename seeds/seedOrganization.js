@@ -8,9 +8,9 @@ const seedOrg = async () => {
 
       if (!existingOrg) {
         await Organization.create({ name });
-        console.log(`✅ Organization "${name}" seeded.`);
+        // console.log(`✅ Organization "${name}" seeded.`);
       } else {
-        console.log(`⚠️ Organization "${name}" already exists.`);
+        // console.log(`⚠️ Organization "${name}" already exists.`);
       }
     }
     console.log("✅ Organization seeding complete!");

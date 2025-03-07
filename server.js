@@ -13,11 +13,12 @@ app.use(cors());
 connectDB();
 
 // Routes
-app.use('/api/services', require('./routes/authRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/org', require('./routes/orgRoutes'));
 
 
 app.get('/', (req, res) => {
-    res.send('<h1>Welcome to the Authentication Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users.</p>');
+    res.send('<h1>Welcome to the Authentication and Organization Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users.</p>');
 });
 
 app.listen(PORT, () => console.log(`Authentication service running on port ${PORT}`));
