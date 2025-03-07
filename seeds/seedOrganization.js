@@ -1,21 +1,13 @@
 const Organization = require("../models/organization");
-const { ORGANIZATION_NAMES } = require("./constants");
+const { organizations } = require("./constants");
 
 const seedOrg = async () => {
   try {
-    for (const name of ORGANIZATION_NAMES) {
-      const existingOrg = await Organization.findOne({ name });
-
-      if (!existingOrg) {
-        await Organization.create({ name });
-        // console.log(`✅ Organization "${name}" seeded.`);
-      } else {
-        // console.log(`⚠️ Organization "${name}" already exists.`);
-      }
-    }
-    console.log("✅ Organization seeding complete!");
+    await Organization.deleteMany();
+    await Organization.insertMany(organizations);
+    console.log("All Organization added successfully!");
   } catch (error) {
-    console.error("❌ Error seeding organizations:", error);
+    console.error("Error seeding Organization:", error);
   }
 };
 

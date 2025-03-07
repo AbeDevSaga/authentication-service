@@ -1,3 +1,9 @@
+const getRandomDate = () => {
+  const start = new Date(2022, 0, 1); // Start date (January 1, 2022)
+  const end = new Date(); // End date (current date)
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+};
+
 const adminUser = {
   username: "admin",
   email: "admin@gmail.com",
@@ -11,13 +17,107 @@ const adminUser = {
   profileImage: "",
 };
 
-const ORGANIZATION_NAMES = [
-  "Tech Solutions",
-  "Health Care Innovations",
-  "Green Energy Co.",
-  "EduConnect",
-  "Smart Logistics",
-  "Creative Media Hub",
+const organizations = [
+  {
+    name: "Tech Innovators",
+    description: "Leading the way in technology innovation.",
+    address: "123 Tech Street, Silicon Valley, CA, USA",
+    phone: "+1 123 456 7890",
+    email: "info@techinnovators.com",
+    website: "https://techinnovators.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Green Solutions",
+    description: "Providing eco-friendly solutions for a sustainable future.",
+    address: "456 Green Avenue, Portland, OR, USA",
+    phone: "+1 234 567 8901",
+    email: "info@greensolutions.com",
+    website: "https://greensolutions.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Health Plus",
+    description: "Your partner in health and wellness.",
+    address: "789 Health Road, Boston, MA, USA",
+    phone: "+1 345 678 9012",
+    email: "info@healthplus.com",
+    website: "https://healthplus.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "EduTech",
+    description: "Revolutionizing education through technology.",
+    address: "101 Edu Street, Austin, TX, USA",
+    phone: "+1 456 789 0123",
+    email: "info@edutech.com",
+    website: "https://edutech.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Foodies Delight",
+    description: "Delivering delicious meals to your doorstep.",
+    address: "202 Food Lane, Chicago, IL, USA",
+    phone: "+1 567 890 1234",
+    email: "info@foodiesdelight.com",
+    website: "https://foodiesdelight.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Fashion Forward",
+    description: "Setting trends in the fashion industry.",
+    address: "303 Style Avenue, New York, NY, USA",
+    phone: "+1 678 901 2345",
+    email: "info@fashionforward.com",
+    website: "https://fashionforward.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Travel Masters",
+    description: "Your gateway to unforgettable travel experiences.",
+    address: "404 Wanderlust Road, Miami, FL, USA",
+    phone: "+1 789 012 3456",
+    email: "info@travelmasters.com",
+    website: "https://travelmasters.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Fitness Zone",
+    description: "Helping you achieve your fitness goals.",
+    address: "505 Gym Street, Los Angeles, CA, USA",
+    phone: "+1 890 123 4567",
+    email: "info@fitnesszone.com",
+    website: "https://fitnesszone.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Artistry Hub",
+    description: "Celebrating creativity and artistic expression.",
+    address: "606 Art Lane, San Francisco, CA, USA",
+    phone: "+1 901 234 5678",
+    email: "info@artistryhub.com",
+    website: "https://artistryhub.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
+  {
+    name: "Finance Pro",
+    description: "Expert financial advice for your business.",
+    address: "707 Money Street, Seattle, WA, USA",
+    phone: "+1 012 345 6789",
+    email: "info@financepro.com",
+    website: "https://financepro.com",
+    logo: "https://via.placeholder.com/150",
+    created_at: getRandomDate(),
+  },
 ];
 
-module.exports = { ORGANIZATION_NAMES, adminUser };
+module.exports = { organizations, adminUser };
