@@ -9,9 +9,9 @@ const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB')
-    // seedUsers(30);
-    // seedAdmin();
-    // seedOrg();
+    await seedUsers(30);
+    await seedOrg();
+    await seedAdmin();
   } catch (err) {
     console.error("Failed to connect to MongoDB", err);
     process.exit(1);
