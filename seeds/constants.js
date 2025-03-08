@@ -14,7 +14,7 @@ const generateFakeUser = async () => {
     password: hashedPassword,
     isPremium: faker.datatype.boolean(),
     profileImage: profileImageBase64,
-    phone: faker.phone.phoneNumber(),
+    phone: faker.phone.number(),
     created_at: getRandomDate(),
   };
 };
