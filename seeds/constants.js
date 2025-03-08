@@ -1,8 +1,6 @@
 const { faker } = require("@faker-js/faker"); 
 const bcrypt = require("bcryptjs");
 
-
-
 const generateFakeUser = async () => { 
   const profileImage = faker.image.personPortrait(); // Generate a random profile image URL
   const password = "password123";
@@ -16,6 +14,8 @@ const generateFakeUser = async () => {
     password: hashedPassword,
     isPremium: faker.datatype.boolean(),
     profileImage: profileImageBase64,
+    phone: faker.phone.phoneNumber(),
+    created_at: getRandomDate(),
   };
 };
 
