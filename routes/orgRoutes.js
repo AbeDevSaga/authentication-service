@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, createOrganization, getAllOrganizations, getOrganizationById, updateOrganization, deleteOrganization } = require('../controllers/orgController');
+const { createOrganization, getAllOrganizations, getOrganizationById, updateOrganization, deleteOrganization } = require('../controllers/orgController');
+const { createUser } = require('../controllers/userController');
 const { verifyToken, isAdmin, isSuperAdmin } = require('../middlewares/authMiddleware');
 
 

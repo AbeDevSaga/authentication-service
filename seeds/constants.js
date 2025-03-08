@@ -1,3 +1,24 @@
+const { faker } = require("@faker-js/faker"); 
+const bcrypt = require("bcryptjs");
+
+
+
+const generateFakeUser = async () => { 
+  const profileImage = faker.image.personPortrait(); // Generate a random profile image URL
+  const password = "password123";
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const profileImageBase64 = Buffer.from(profileImage, "binary").toString("base64");
+
+  return {
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    password: hashedPassword,
+    isPremium: faker.datatype.boolean(),
+    profileImage: profileImageBase64,
+  };
+};
+
 const getRandomDate = () => {
   const start = new Date(2022, 0, 1); // Start date (January 1, 2022)
   const end = new Date(); // End date (current date)
@@ -122,4 +143,5 @@ const organizations = [
   },
 ];
 
-module.exports = { organizations, adminUser };
+
+module.exports = { organizations, adminUser, generateFakeUser };

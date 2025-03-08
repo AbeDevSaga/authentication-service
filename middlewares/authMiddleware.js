@@ -34,8 +34,23 @@ const isSuperAdmin = async (req, res, next) => {
   }
 };
 
+const allowAdmins = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user || user.role !== "Admin" || user.role !== "Super Admin") {
+      return res
+        .status(403)
+        .json({ error: "Access denied, only Admins are allowed" });
+    }
+    next();
+  } catch (error) {
+    res.status(500).json({ error: "Server error", details: error.message });
+  }
+};
+
 module.exports = {
   verifyToken,
   isAdmin,
   isSuperAdmin,
+  allowAdmins,
 };
