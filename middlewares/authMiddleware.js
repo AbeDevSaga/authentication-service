@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const verifyToken = (req, res, next) => {
-  // const token = req.headers["authorization"];
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(403).json({ error: "No token provided" });
 
@@ -37,7 +36,7 @@ const isSuperAdmin = async (req, res, next) => {
 const allowAdmins = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
-    if (!user || user.role !== "Admin" || user.role !== "Super Admin") {
+    if (!user || (user.role !== "Admin" && user.role !== "Super Admin")) {
       return res
         .status(403)
         .json({ error: "Access denied, only Admins are allowed" });

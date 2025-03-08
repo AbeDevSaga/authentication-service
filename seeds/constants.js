@@ -16,6 +16,7 @@ const generateFakeUser = async () => {
     profileImage: profileImageBase64,
     phone: faker.phone.number(),
     created_at: getRandomDate(),
+    status: faker.helpers.arrayElement(["active", "inactive", "banned", "pending"]),
   };
 };
 

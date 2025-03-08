@@ -55,6 +55,7 @@ const deleteUser = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
+    console.log("get users called")
   try {
     const users = await User.find();
     res.status(200).json(users);

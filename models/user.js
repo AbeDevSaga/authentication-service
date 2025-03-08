@@ -31,6 +31,11 @@ const UserSchema = new mongoose.Schema(
     projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
     tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
     created_at: { type: Date, default: Date.now },
+    status: {
+      type: String,
+      enum: ["active", "inactive", "banned", "pending"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
