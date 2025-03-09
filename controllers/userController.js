@@ -2,6 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 const createUser = async (req, res) => {
+  console.log("createUser");
   const organization = req.organizationId.toString();
   try {
     const { username, email, password, role } = req.body;
@@ -25,6 +26,7 @@ const createUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  console.log("updateUser");
   try {
     const { id } = req.params;
     const updates = req.body;
@@ -43,6 +45,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
+  console.log("deleteUser");
   try {
     const { id } = req.params;
     const deletedUser = await Organization.findByIdAndDelete(id);
@@ -55,7 +58,7 @@ const deleteUser = async (req, res) => {
 };
 
 const getAllUsers = async (req, res) => {
-    console.log("get users called")
+  console.log("getAllUsers");
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -65,6 +68,7 @@ const getAllUsers = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
+  console.log("getUserById");
   try {
     const { id } = req.params;
     const user = await User.findById(id);
@@ -76,6 +80,7 @@ const getUserById = async (req, res) => {
 };
 
 const getUsersByOrganizationId = async (req, res) => {
+  console.log("getUsersByOrganizationId");
   try {
     const { id } = req.params;
     const users = await User.find({ organization: id });
@@ -87,6 +92,7 @@ const getUsersByOrganizationId = async (req, res) => {
 };
 
 const getPremiumUsers = async (req, res) => {
+  console.log("get premium");
   try {
     const premiumUsers = await User.find({ isPremium: true });
     if (!premiumUsers)

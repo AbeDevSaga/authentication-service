@@ -1,24 +1,6 @@
-const { faker } = require("@faker-js/faker"); 
+const { faker } = require("@faker-js/faker");
+const axios = require('axios');
 const bcrypt = require("bcryptjs");
-
-const generateFakeUser = async () => { 
-  const profileImage = faker.image.personPortrait(); // Generate a random profile image URL
-  const password = "password123";
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const profileImageBase64 = Buffer.from(profileImage, "binary").toString("base64");
-
-  return {
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    password: hashedPassword,
-    isPremium: faker.datatype.boolean(),
-    profileImage: profileImageBase64,
-    phone: faker.phone.number(),
-    created_at: getRandomDate(),
-    status: faker.helpers.arrayElement(["active", "inactive", "banned", "pending"]),
-  };
-};
 
 const getRandomDate = () => {
   const start = new Date(2022, 0, 1); // Start date (January 1, 2022)
@@ -26,6 +8,38 @@ const getRandomDate = () => {
   return new Date(
     start.getTime() + Math.random() * (end.getTime() - start.getTime())
   );
+};
+
+const generateFakeUser = async () => {
+  const avatarUrl = faker.image.avatar(); // Generates a random avatar URL
+  let profileImageBase64 = '';
+
+  try {
+    // Fetch the image from the URL
+    const response = await axios.get(avatarUrl, { responseType: 'arraybuffer' });
+    // Convert the image to Base64
+    profileImageBase64 = Buffer.from(response.data, 'binary').toString('base64');
+  } catch (error) {
+    console.error('Error fetching or converting image:', error);
+  }
+  const password = "password123";
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  return {
+    username: faker.internet.username(),
+    email: faker.internet.email(),
+    password: hashedPassword,
+    isPremium: faker.datatype.boolean(),
+    profileImage: `data:image/jpeg;base64,${profileImageBase64}`,
+    phone: faker.phone.number(),
+    created_at: getRandomDate(),
+    status: faker.helpers.arrayElement([
+      "active",
+      "inactive",
+      "banned",
+      "pending",
+    ]),
+  };
 };
 
 const adminUser = {
@@ -143,6 +157,5 @@ const organizations = [
     created_at: getRandomDate(),
   },
 ];
-
 
 module.exports = { organizations, adminUser, generateFakeUser };

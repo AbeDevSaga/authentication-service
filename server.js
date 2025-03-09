@@ -1,7 +1,7 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./configuration/db_config')
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./configuration/db_config");
 
 dotenv.config();
 
@@ -12,19 +12,22 @@ app.use(express.json());
 app.use(cors());
 connectDB();
 
-// app.use((req, res, next) => {
-//     console.log('Request Headers:', req.headers);
-//     next();
-// });
-
-// Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/org', require('./routes/orgRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
-
-
-app.get('/', (req, res) => {
-    res.send('<h1>Welcome to the Authentication and Organization Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users.</p>');
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
 });
 
-app.listen(PORT, () => console.log(`Authentication service running on port ${PORT}`));
+// Routes
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/org", require("./routes/orgRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+
+app.get("/", (req, res) => {
+  res.send(
+    "<h1>Welcome to the Authentication and Organization Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users.</p>"
+  );
+});
+
+app.listen(PORT, () =>
+  console.log(`Authentication service running on port ${PORT}`)
+);

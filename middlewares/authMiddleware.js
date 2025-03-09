@@ -34,6 +34,7 @@ const isSuperAdmin = async (req, res, next) => {
 };
 
 const allowAdmins = async (req, res, next) => {
+  console.log("allow admins");
   try {
     const user = await User.findById(req.user.id);
     if (!user || (user.role !== "Admin" && user.role !== "Super Admin")) {
