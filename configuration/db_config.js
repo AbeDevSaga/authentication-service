@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const seedAdmin = require('../seeds/seedAdmin');
 const seedOrg = require('../seeds/seedOrganization');
 const populateOrganizationUsers = require("../seeds/populateOrganizationUsers");
+console.log("MongoDB URI:", process.env.MONGO_URI || "Not Set");
 
 dotenv.config();
 const connectDB = async () => {
