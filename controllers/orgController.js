@@ -78,7 +78,7 @@ const getAllOrganizations = async (req, res) => {
 const getOrganizationById = async (req, res) => {
   try {
     const { id } = req.params;
-    const organization = await Organization.findById(id);
+    const organization = await Organization.findById(id).populate("superAdmin");
     if (!organization)
       return res.status(404).json({ message: "Organization not found" });
     res.status(200).json(organization);

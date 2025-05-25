@@ -1,6 +1,22 @@
 const User = require("../models/user");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); 
 const jwt = require("jsonwebtoken");
+
+const verifyToken = (req, res) => {
+  console.log("token verification")
+  const token = req.headers.authorization?.split(' ')[1];
+  console.log("token ", token)
+  if (!token) return res.status(403).json({ error: "No token provided" });
+
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+    if (err) return res.status(401).json({ error: "Unauthorized" });
+    req.user = decoded;
+    console.log("req.user:", req.user);
+    const user = await User.findById(req.user.id).select("-password");
+    console.log("user :", user);
+    res.status(200).json(user)
+  });
+};
 
 const login = async (req, res) => {
   try {
@@ -20,7 +36,7 @@ const login = async (req, res) => {
     // };
 
     const token = jwt.sign(
-      { id: user._id, role: user.role },
+      { id: user._id, role: user.role }, 
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
@@ -48,4 +64,5 @@ const register = async (req, res) => {
 module.exports = {
   login,
   register,
+  verifyToken,
 };

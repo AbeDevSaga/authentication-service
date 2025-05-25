@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./configuration/db_config");
+require("./middlewares/listener");
+
 
 dotenv.config();
 
@@ -26,10 +28,11 @@ app.use((req, res, next) => {
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/org", require("./routes/orgRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/token", require("./routes/userRoutes"));
 
 app.get("/", (req, res) => {
   res.send(
-    "<h1>Welcome to the Authentication and Organization Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users.</p>"
+    "<h1>Welcome to the Authentication and Organization Service!</h1><p>Use the /api/auth/register and /api/auth/login routes to register and login users....</p>"
   );
 });
 
